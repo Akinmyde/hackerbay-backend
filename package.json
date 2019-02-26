@@ -1,0 +1,34 @@
+{
+  "name": "hackerbay-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js", 
+    "serve": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Akinmyde/hackerbay-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Akinmyde/hackerbay-backend/issues"
+  },
+  "homepage": "https://github.com/Akinmyde/hackerbay-backend#readme",
+  "dependencies": {
+    "babel-runtime": "^6.26.0",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "babel-register": "^6.26.0",
+    "eslint": "^5.14.1",
+    "mocha": "^6.0.2",
+    "nodemon": "^1.18.10",
+    "supertest": "^3.4.2"
+  }
+}
