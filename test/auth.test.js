@@ -4,6 +4,7 @@ import 'babel-polyfill';
 import request from 'supertest';
 import expect from 'expect';
 import app from '../app';
+import baseUrl from './app.test';
 
 request.agent(app.listen());
 
@@ -16,7 +17,7 @@ describe('POST /auth/signup', () => {
   it('Should create a new user', async () => {
     try {
       const res = await request(app)
-        .post('/api/v1/auth/signup')
+        .post(`${baseUrl}/auth/signup`)
         .send(user)
         .expect(200);
       expect(res.body.status).toEqual(201);
@@ -28,7 +29,7 @@ describe('POST /auth/signup', () => {
   it('Should throw an error if username already exist', async () => {
     try {
       const res = await request(app)
-        .post('/api/v1/auth/signup')
+        .post(`${baseUrl}/auth/signup`)
         .send(user)
         .expect(409);
       expect(res.body.status).toEqual(409);
@@ -42,7 +43,7 @@ describe('POST auth/login', () => {
   it('sholud throw an error', async () => {
     try {
       const res = await request(app)
-        .post('/api/v1/auth/login')
+        .post(`${baseUrl}/auth/login`)
         .send({ username: 'test', password: 'unknown' })
         .expect(401);
       expect(res.body.status).toEqual(401);
@@ -54,7 +55,7 @@ describe('POST auth/login', () => {
   it('sholud login a user', async () => {
     try {
       const res = await request(app)
-        .post('/api/v1/auth/login')
+        .post(`${baseUrl}/auth/login`)
         .send(user)
         .expect(200);
       expect(res.body.status).toEqual(200);

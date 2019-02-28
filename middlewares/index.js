@@ -26,6 +26,28 @@ class Middleware {
     return next();
   }
 
+  static validatePatchInput(req, res, next) {
+    const { patchRequest, patchObject } = req.body;
+    const message = [];
+
+    if (!validate.isObject(patchRequest) || validate.isEmpty(patchRequest)) {
+      message.push('PatchRequest is required and must be an object');
+    }
+
+    if (!validate.isArray(patchObject) || validate.isEmpty(patchObject)) {
+      message.push('PatchObject is required and must be an array');
+    }
+
+    if (isEmpty(message)) {
+      return next();
+    }
+
+    return res.status(400).send({
+      status: 400,
+      message,
+    });
+  }
+
   static validateImageUrl(req, res, next) {
     const { imageUrl } = req.body;
     if (!validate.isString(imageUrl) || validate.isEmpty(imageUrl)) {
