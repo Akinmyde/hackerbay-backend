@@ -1,5 +1,5 @@
 import authController from './authController';
 
-const { signUp } = authController;
+const { signUp, login } = authController;
 
-export default signUp;
+export { signUp, login };

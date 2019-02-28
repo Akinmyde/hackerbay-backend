@@ -7,10 +7,10 @@ import app from '../app';
 
 request.agent(app.listen());
 
-describe('Validate User Signup', () => {
+describe('Validate User Input', () => {
   it('should return status code 400 if username not provided', (done) => {
     request(app)
-      .post('/api/v1/auth')
+      .post('/api/v1/auth/signup')
       .send({
         password: 'testingv6t7',
       })
@@ -27,7 +27,7 @@ describe('Validate User Signup', () => {
   });
   it('should return status code 400 if username not provided', (done) => {
     request(app)
-      .post('/api/v1/auth')
+      .post('/api/v1/auth/signup')
       .send({
         username: '',
         password: 'testingv6t7',
@@ -46,7 +46,7 @@ describe('Validate User Signup', () => {
 
   it('should return status code 400 if password not provided', (done) => {
     request(app)
-      .post('/api/v1/auth')
+      .post('/api/v1/auth/signup')
       .send({
         username: 'testing',
       })
@@ -63,7 +63,7 @@ describe('Validate User Signup', () => {
   });
   it('should return status code 400 if username not provided', (done) => {
     request(app)
-      .post('/api/v1/auth')
+      .post('/api/v1/auth/signup')
       .send({
         username: 'testing',
         password: '',

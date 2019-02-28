@@ -2,7 +2,7 @@ import validate from 'validate.js';
 import isEmpty from 'lodash.isempty';
 
 class Middleware {
-  static validateUserSignup(req, res, next) {
+  static validateUserInput(req, res, next) {
     const { username, password } = req.body;
     const message = [];
 
