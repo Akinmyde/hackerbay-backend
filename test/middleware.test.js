@@ -4,13 +4,14 @@ import 'babel-polyfill';
 import request from 'supertest';
 import expect from 'expect';
 import app from '../app';
+import baseUrl from './app.test';
 
 request.agent(app.listen());
 
 describe('Validate User Input', () => {
   it('should return status code 400 if username not provided', (done) => {
     request(app)
-      .post('/api/v1/auth/signup')
+      .post(`${baseUrl}/auth/signup`)
       .send({ password: 'testingv6t7' })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
@@ -25,7 +26,7 @@ describe('Validate User Input', () => {
   });
   it('should return status code 400 if username not provided', (done) => {
     request(app)
-      .post('/api/v1/auth/signup')
+      .post(`${baseUrl}/auth/signup`)
       .send({
         username: '',
         password: 'testingv6t7',
@@ -44,10 +45,8 @@ describe('Validate User Input', () => {
 
   it('should return status code 400 if password not provided', (done) => {
     request(app)
-      .post('/api/v1/auth/signup')
-      .send({
-        username: 'testing',
-      })
+      .post(`${baseUrl}/auth/signup`)
+      .send({ username: 'testing' })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
       .expect(400)
@@ -61,7 +60,7 @@ describe('Validate User Input', () => {
   });
   it('should return status code 400 if username not provided', (done) => {
     request(app)
-      .post('/api/v1/auth/signup')
+      .post(`${baseUrl}/auth/signup`)
       .send({
         username: 'testing',
         password: '',
@@ -82,7 +81,7 @@ describe('Validate User Input', () => {
 describe('Test for Islogin', () => {
   it('should throw an error is user is not logged in', (done) => {
     request(app)
-      .post('/api/v1/thumbnail')
+      .post(`${baseUrl}/thumbnail`)
       .send({ imageUrl: ['dsfgdg'] })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
@@ -97,7 +96,7 @@ describe('Test for Islogin', () => {
   });
   it('should throw an error is user is not logged in', (done) => {
     request(app)
-      .post('/api/v1/thumbnail')
+      .post(`${baseUrl}/thumbnail`)
       .send({ imageUrl: [], token: 'nulltoken' })
       .set('Accept', 'application/json')
       .expect('Content-Type', /json/)
