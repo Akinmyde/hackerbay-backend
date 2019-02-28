@@ -21,7 +21,7 @@ class authController {
       const user = await client.query(signUpUserQuery);
       const { rows } = user;
       if (rows) {
-        const token = encode(rows[0].id, rows[0].isadmin);
+        const token = encode(rows[0].id, rows[0].username);
         return res.send({ status: 201, token, message: 'Registration was successfull' });
       } return res.send({ status: 204, error: 'User account not created, try again' });
     } catch (err) {
@@ -29,7 +29,7 @@ class authController {
       if (constraint === 'users_username_key') {
         res.status(409).send({ status: 409, message: 'Username already exists' });
       } else {
-        return res.status(500).send({ status: 500, message: 'Internal server error' });
+        return res.status(500).send({ status: 500, message: 'Error encounter while processing your request' });
       }
     } finally { await client.release(); }
   }
@@ -51,12 +51,12 @@ class authController {
       const { rows, rowCount } = user;
       if (rowCount === 0) { return res.status(401).send({ status: 401, message: 'Invalid username or password' }); }
       if (verifyHash(password.trim(), rows[0].password)) {
-        const token = encode(rows[0].id, rows[0].isadmin);
+        const token = encode(rows[0].id, username);
         const updateQuery = { text: 'UPDATE users SET lastlogin = CURRENT_DATE WHERE id = $1', values: [rows[0].id] };
         await client.query(updateQuery);
         return res.status(200).send({ status: 200, token, message: 'Login was successful' });
       } return res.status(401).send({ status: 401, message: 'Invalid username or password' });
-    } catch (err) { return res.status(500).send({ status: 500, message: 'Internal server error' }); } finally { await client.release(); }
+    } catch (err) { return res.status(500).send({ status: 500, message: 'Error encounter while processing your request' }); } finally { await client.release(); }
   }
 }
 
