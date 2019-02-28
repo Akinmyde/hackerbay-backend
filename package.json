@@ -24,6 +24,7 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
     "cloudinary": "^1.13.2",
     "cors": "^2.8.5",
@@ -38,7 +39,6 @@
     "validate.js": "^0.12.0"
   },
   "devDependencies": {
-    "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "coveralls": "^3.0.3",
     "eslint": "^5.14.1",
