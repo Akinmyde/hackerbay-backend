@@ -25,7 +25,11 @@ To start application
 npm start
 ```
 
-npm test
+to test application
+
+```
+npm start
+```
 
 ### Features
 - Signup a user: `POST https://hackerbay-backend.herokuapp.com/api/v1/auth/signin`
