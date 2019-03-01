@@ -32,7 +32,7 @@ npm start
 ```
 
 ### Features
-- Signup a user: `POST https://hackerbay-backend.herokuapp.com/api/v1/auth/signin`
+- Signup a user: `POST https://hackerbay-backend.herokuapp.com/api/v1/auth/signup`
 - Login a user: `POST https://hackerbay-backend.herokuapp.com/api/v1/auth/login`
 - Generate a thumbnail image: `POST https://hackerbay-backend.herokuapp.com/api/v1/thumbnail`
 - Patch Json: `POST https://hackerbay-backend.herokuapp.com/api/v1/patch`
